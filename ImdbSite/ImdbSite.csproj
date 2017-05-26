@@ -144,13 +144,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaconController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Actor.cs" />
+    <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Settings.cs" />
+    <Compile Include="ViewModels\Bacon\BaconActorViewModel.cs" />
+    <Compile Include="ViewModels\Bacon\BaconMovieViewModel.cs" />
     <Compile Include="ViewModels\Query\QueryExecuteViewModel.cs" />
     <Compile Include="ViewModels\Query\QueryIndexViewModel.cs" />
   </ItemGroup>
@@ -191,10 +196,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Query\Index.cshtml" />
     <Content Include="Views\Query\Execute.cshtml" />
+    <Content Include="Views\Bacon\Movie.cshtml" />
+    <Content Include="Views\Bacon\Actor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

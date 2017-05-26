@@ -89,5 +89,20 @@ namespace ImdbCommon
             Console.WriteLine($"Query Executed: {queryString}");
             return sb.ToString();
         }
+
+        public async Task<List<T>> ExecuteGremlinQuery<T>(string queryString)
+        {
+            var result = new List<T>();
+            var query = Client.CreateGremlinQuery<T>(Graph, queryString);
+            while (query.HasMoreResults)
+            {
+                foreach (var foo in await query.ExecuteNextAsync<T>())
+                {
+                    result.Add(foo);
+                }
+            }
+
+            return result;
+        }
     }
 }

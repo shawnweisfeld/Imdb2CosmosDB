@@ -1,0 +1,14 @@
+﻿@model ImdbSite.ViewModels.Bacon.BaconMovieViewModel
+
+@{
+    ViewBag.Title = "Actor";
+}
+
+<h2>Actors in @Model.Movie.name[0]</h2>
+
+<ul>
+    @foreach (var actor in Model.Actors.OrderBy(x => x.name[0]))
+    {
+        <li>@Html.ActionLink($"{actor.name[0]}", "Actor", "Bacon", new { id = actor.pkey[0] }, null) </li>
+    }
+</ul>
