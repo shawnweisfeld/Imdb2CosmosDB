@@ -1,0 +1,51 @@
+﻿@model ImdbSite.ViewModels.Query.QueryExecuteViewModel
+
+@{
+    ViewBag.Title = "Execute";
+}
+
+<h2>Query Results</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Query)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Query)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Result)
+        </dt>
+
+        <dd>
+            @Html.TextArea("result", Model.Result, 10, 50, new { @class = "form-control" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsError)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsError)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Model.Duration.Humanize()
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @using (Html.BeginForm("Index", "Query", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("query", Model.Query)
+        <input type="submit" value="Again" class="btn btn-default" />
+    }
+</p>

@@ -1,0 +1,29 @@
+﻿@model ImdbSite.ViewModels.Query.QueryIndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Execute a Ad hoc query agaist the Graph DB</h2>
+
+
+@using (Html.BeginForm("Execute", "Query", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("Query", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextArea("query", Model.Query, 10, 50, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Execute" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

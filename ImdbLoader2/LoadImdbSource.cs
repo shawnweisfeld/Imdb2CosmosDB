@@ -1,4 +1,5 @@
-﻿using ImdbLoader2.Util;
+﻿using ImdbCommon;
+using ImdbLoader2.Util;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,7 +31,7 @@ namespace ImdbLoader2
             try
             {
 
-                var gh = await GraphHelper.CreateAsync();
+                var gh = await GraphHelper.CreateAsync(Settings.GraphEndpoint, Settings.GraphKey, Settings.GraphDatabase, Settings.GraphCollection, Settings.GraphThroughput, Settings.ConnectionsPerProc);
 
                 await bh.CreateContainerIfNotExistAsync($"{Settings.ImdbParsedFileContainer}output");
                 
