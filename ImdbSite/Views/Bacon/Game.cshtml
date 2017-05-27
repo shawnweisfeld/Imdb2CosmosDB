@@ -1,0 +1,86 @@
+﻿@model ImdbSite.ViewModels.Bacon.BaconGameViewModel
+
+@{
+    ViewBag.Title = "Six Degrees of Kevin Bacon Game";
+}
+
+<h2>Six Degrees of Kevin Bacon Game</h2>
+
+@if (Model.Breadcrumbs.Any())
+{
+    <ol class="breadcrumb">
+        @foreach (var crumb in Model.Breadcrumbs.OrderBy(x => x.Path.Split('-').Length))
+        {
+            <li>@Html.ActionLink(crumb.Name, "Game", "Bacon", new { id = crumb.Key, path = crumb.Path, solution = Model.Solution }, null)</li>
+        }
+    </ol>
+}
+
+@if (Model.Winner)
+{
+    <div class="text-center">
+        <h2>You Found Me! You Win!</h2>
+        <img src="~/Content/kevin.jpg" />
+    </div>
+}
+else
+{
+
+    if (Model.Degrees == 0)
+    {
+        <h2>Lets Get Started, Pick a movie.</h2>
+    }
+    else if (Model.Degrees == 1)
+    {
+        <h2>Nice, Now pick an Actor.</h2>
+    }
+    else if (Model.Degrees < 6)
+    {
+        <h2>Keep Going. @Model.Degrees Degrees of Seperation.</h2>
+    }
+    else
+    {
+        <h2>@Model.Degrees Degrees of Seperation. You Missed Kevin! Use the breadcrumbs to go back and try another path.</h2>
+    }
+
+    if (Model.CurrentNodeKey.StartsWith("A"))
+    {
+        <h2>Movies starring "@Model.Actor.name[0]"</h2>
+
+        <ul>
+            @foreach (var movie in Model.Movies.OrderBy(x => x.name[0]))
+            {
+                <li>
+                    @Html.ActionLink($"{movie.name[0]} ({movie.released[0]})", "Game", "Bacon",
+             new { id = movie.pkey[0], path = Model.Path, solution = Model.Solution }, null)
+                    @if (movie.pkey[0] == Model.NextNodeKey)
+                    {
+                        <b>(A)</b>
+                    }
+                </li>
+            }
+        </ul>
+    }
+    else if (Model.CurrentNodeKey.StartsWith("M"))
+    {
+        <h2>Actors that starred in "@Model.Movie.name[0]"</h2>
+
+        <ul>
+            @foreach (var actor in Model.Actors.OrderBy(x => x.name[0]))
+            {
+                <li>
+
+                    @Html.ActionLink(actor.name[0], "Game", "Bacon",
+                 new { id = actor.pkey[0], path = Model.Path, solution = Model.Solution }, null)
+                    @if (actor.pkey[0] == Model.NextNodeKey)
+                    {
+                        <b>(A)</b>
+                    }
+
+                </li>
+            }
+        </ul>
+    }
+
+}
+
