@@ -15,7 +15,7 @@ namespace ImdbLoader2
         //https://github.com/adamabdelhamed/PowerArgs
         //http://www.nuget.org/packages/PowerArgs/
 
-        [ArgShortcut("-c")]
+        [ArgShortcut("-c"), ArgDefaultValue(Command.ExecuteBatch)]
         public Command Command { get; set; }
 
         [ArgShortcut("-f")]
