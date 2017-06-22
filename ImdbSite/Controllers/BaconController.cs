@@ -21,9 +21,8 @@ namespace ImdbSite.Controllers
         {
             var gh = await GraphHelper.CreateAsync(Settings.GraphEndpoint, Settings.GraphKey, Settings.GraphDatabase, Settings.GraphCollection, Settings.GraphThroughput, Settings.ConnectionsPerProc);
             var random = new Random();
-            //            g.V().has("name", "Kevin I Bacon")
 
-            // Kevin Bacon pkey is not fixed0 - appears to depend on the ftp source file creation date
+            // Kevin Bacon pkey is not fixed - appears to depend on the ftp source file creation date
             var kevin = "A398066"; // Latest as of 22nd June 2017, but subject to future change
 
             // Find Kevin's latest pkey
@@ -36,7 +35,6 @@ namespace ImdbSite.Controllers
             {
                 kevin = findKevinBacon.pkey[0];
             }
-
 
             //walk from Kevin Bacon out 6 degrees so we are sure to have a solveable puzzle
             //Also make sure that we dont pick a movie or actor that we have already used
