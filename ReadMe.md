@@ -1,9 +1,9 @@
-﻿IMDB in Cosmos Graph
+IMDB in Cosmos Graph
 ====================
 
 The IMDB database is a great way to learn about Graph Databases, but loading it can be a bit tricky due to its size. This project aims to allow you to download the IMDB source files and load them into a Cosmos Graph database in a few easy steps.
 
-1.	Download the source code
+1.	Download the source code (NOTE: Please review licensing to use the data here: http://www.imdb.com/interfaces)
 2.	Create some Azure Resources
     +	Resource Group
     +	Storage account
